@@ -23,9 +23,11 @@ files = [
 ]
 ```
 
-Running Tests
----------------
+Contributing
+-------------
 
-Run tests after installing Karma (e.g. `npm install`) from the command line:
+## Tests
+
+Test changes to jstd.shim.js after installing Karma (e.g. `npm install`) from the command line:
 
 `karma start`
