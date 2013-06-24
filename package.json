@@ -1,0 +1,20 @@
+{
+  "name": "jstd-shim",
+  "description": "A jstd shim for executing jstd tests outside the JSTD environment",
+  "version": "0.1.0",
+  "homepage": "https://github.com/atsid/jstd-shim",
+  "author": {
+    "name": "Sean Lawrence",
+    "email": "sean.lawrence@atsid.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/atsid/jstd-shim.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atsid/jstd-shim/issues"
+  },
+  "devDependencies": {
+    "karma": "~0.8.6"
+  }
+}
