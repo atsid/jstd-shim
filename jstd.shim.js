@@ -19,10 +19,11 @@ var JSTD_SHIM = (function (global) {
         default_timeout = 30000, //timeout after 30 secs by default (like jstd)
         timeout_ms,
         stats,
-        reporter = {
+        reporter = Object.create({
             result: function (resultObj) {
                 console.log((resultObj.success ? 'SUCCESS' : 'FAIL') + ' ' + resultObj.description);
             },
+            success: function (resultObj) {},
             error: function (error, resultObj, name) {
                 var message;
                 name = name || error.name;
@@ -39,7 +40,7 @@ var JSTD_SHIM = (function (global) {
                 console.log(" Error:   " + stats.error);
                 console.log(" Ignored: " + stats.ignore);
             }
-        };
+        });
 
     global.TestCase = function (suite_name, tests) {
         var fn = function () {},
@@ -196,6 +197,7 @@ var JSTD_SHIM = (function (global) {
         stats.pass += 1;
         result.success = true;
         result.time = Date.now() - result.t0;
+        reporter.success(result);
         completeTest(result);
     }
 
