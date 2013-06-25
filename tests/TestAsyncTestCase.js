@@ -2,13 +2,7 @@ describe("AsyncTestCase Suite", function () {
 
     beforeEach(function (){
         JSTD_SHIM.reset();
-        JSTD_SHIM.modifyReporter(function (oldReporter) {
-            return {
-                result: function () {},
-                error: function () {},
-                complete: function () {}
-            };
-        });
+        JSTD_SHIM.setNoopReporter();
     });
 
     it("executes functions synchronously", function() {

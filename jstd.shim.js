@@ -319,6 +319,15 @@ var JSTD_SHIM = (function (global) {
         },
         getTotal: function () {
             return getTotal();
+        },
+        setNoopReporter: function() {
+            var noop = function () {};
+            reporter = {
+                result: noop,
+                success: noop,
+                error: noop,
+                complete: noop
+            };
         }
     }
 
