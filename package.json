@@ -1,7 +1,7 @@
 {
   "name": "jstd-shim",
   "description": "A jstd shim for executing jstd tests outside the JSTD environment",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/atsid/jstd-shim",
   "author": {
     "name": "Sean Lawrence",
@@ -14,6 +14,18 @@
   "bugs": {
     "url": "https://github.com/atsid/jstd-shim/issues"
   },
+  "main": "jstd.shim.js",
+  "scripts": {
+    "test": "karma start"
+  },
+  "license": "Apache 2.0",
+  "keywords": [
+    "jstd",
+    "karma",
+    "jstd adapter",
+    "jstestdriver",
+    "shim"
+  ],
   "devDependencies": {
     "karma": "~0.8.6"
   }
