@@ -30,6 +30,7 @@
                     result: function (resultObj) {
                         karma.result(resultObj);
                     },
+                    success: function () {},
                     error: function (error, resultObj, name) {
                         var stack = error.stack,
                             message = error.message,
