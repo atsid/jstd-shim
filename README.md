@@ -83,3 +83,4 @@ Changes
 -----------
 
 * 0.1.0 - Initial release
+* 0.1.1 - Noop reporter, package.json updates, doc refinement
