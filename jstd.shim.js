@@ -118,6 +118,7 @@ var JSTD_SHIM = (function (global) {
             suite = currentSuite.tests,
             timeout,
             counter = 0,
+            finished = false,
             failed = false;
             callbacks = {
                 add: function (fn, count) {
@@ -166,8 +167,11 @@ var JSTD_SHIM = (function (global) {
                         error(e, result);
                     }
                 } else {
-                    runJstdFn("tearDown");
-                    successTest(result);
+                    if (!finished) {
+                        finished = true;
+                        runJstdFn("tearDown");
+                        successTest(result);
+                    }
                 }
             };
         suite[test](queue); //load fns
@@ -203,6 +207,7 @@ var JSTD_SHIM = (function (global) {
 
     function completeTest(result) {
         reporter.result(result);
+        stats.total += 1;
         setTimeout(runTest, 1);
     }
 
@@ -225,7 +230,6 @@ var JSTD_SHIM = (function (global) {
             result;
 
         if (testName) {
-            stats.total += 1;
             cleanUpTestZone();
             result = {
                 id: stats.total,

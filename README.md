@@ -85,3 +85,4 @@ Changes
 * 0.1.0 - Initial release
 * 0.1.1 - Noop reporter, package.json updates, doc refinement
 * 0.1.2 - jstdshim-jasmine-karma adapter fix
+* 0.1.3 - fixed async bug where successful tests were getting completed twice
