@@ -19,6 +19,7 @@ var JSTD_SHIM = (function (global) {
         default_timeout = 30000, //timeout after 30 secs by default (like jstd)
         timeout_ms,
         stats,
+        queryParams = getQueryParameters(),
         reporter = Object.create({
             result: function (resultObj) {
                 console.log((resultObj.success ? 'SUCCESS' : 'FAIL') + ' ' + resultObj.description);
@@ -73,6 +74,16 @@ var JSTD_SHIM = (function (global) {
             }
         }
     };
+    
+    function getQueryParameters() {
+        var query = window.location.search.substring(1),
+            vars = query.split('&'), map = {};
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split('=');
+            map[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+        }
+        return map;
+    }
 
     /**
      * TODO: Need to think about best solution for DOM manipulations
@@ -266,18 +277,30 @@ var JSTD_SHIM = (function (global) {
         currentSuite = suites.shift();
 
         if (currentSuite) {
-            //push the tests to an array
-            testQueue = [];
-
-            //first, instantiate
-            if (typeof currentSuite.tests === "function") {
-                currentSuite.tests = new currentSuite.tests();
+            var filter = !queryParams["tests"] ? ["all"] : queryParams["tests"].split(":");
+            if (filter.length === 1) { filter.push("all"); }
+            if (filter[0] === "all" || filter[0].toLowerCase() === currentSuite.name.toLowerCase()) {
+//            if (!queryParams["tests"] || queryParams["tests"] === "all" || queryParams["tests"].split(":")[0].toLowerCase() === currentSuite.name.toLowerCase()){
+//                var filter = (!queryParams["tests"] || queryParams["tests"] === "all" || queryParams["tests"].split(":").length === 1) ? "all" : queryParams["tests"].split(":")[1];
+                //push the tests to an array
+                testQueue = [];
+                
+                //first, instantiate
+                if (typeof currentSuite.tests === "function") {
+                    currentSuite.tests = new currentSuite.tests();
+                }
+                for (test in currentSuite.tests) {
+                    if ((filter[1] === "all" || filter[1].toLowerCase() === test.toLowerCase()) && /^test/.test(test)) {
+//                    if (/^test/.test(test) && (filter === "all" || filter === test)) {
+                        testQueue.push(test);
+                    }
+                }
+                //START TESTS FOR THIS SUITE
+                runTest();
+            } else {
+                //Skip this suite
+                setTimeout(runSuite, 0);
             }
-            for (test in currentSuite.tests) if (/^test/.test(test)) {
-                testQueue.push(test);
-            }
-            //START TESTS FOR THIS SUITE
-            runTest();
         } else {
             // COMPLETED ALL
             stats.totalTime = Date.now() - stats.t0;
