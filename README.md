@@ -79,6 +79,18 @@ Contributing
 
 Test changes to jstd.shim.js after installing Karma (e.g. `npm install`) from the command line with `karma start`.
 
+### Running A Single Test
+
+Begin the test runner from a console:
+    `karma start`
+When the browser window with the test runner appears, click the "Debug" button.
+Open the Browser debug tools for the test window (F12) - this allows you to see the test
+    output in the debug console.
+To run a single test, add the following to the end of the test url:
+    ?tests=<name of test>
+    For example:
+        http://localhost:9876/debug.html?tests=TestTextDocumentViewer
+
 Changes
 -----------
 
@@ -86,3 +98,4 @@ Changes
 * 0.1.1 - Noop reporter, package.json updates, doc refinement
 * 0.1.2 - jstdshim-jasmine-karma adapter fix
 * 0.1.3 - fixed async bug where successful tests were getting completed twice
+* 0.1.4 - allow single unit test to be run instead of full suite
