@@ -1,3 +1,4 @@
+[![Code Climate](https://codeclimate.com/github/atsid/jstd-shim/badges/gpa.svg)](https://codeclimate.com/github/atsid/jstd-shim)
 JSTD shim
 ==========
 
