@@ -1,4 +1,7 @@
 [![Code Climate](https://codeclimate.com/github/atsid/jstd-shim/badges/gpa.svg)](https://codeclimate.com/github/atsid/jstd-shim)
+[![Dependency Status](https://david-dm.org/atsid/jstd-shim.svg)](https://david-dm.org/atsid/jstd-shim)
+[![Dev Dependency Status](https://david-dm.org/atsid/jstd-shim/dev-status.svg)](https://david-dm.org/atsid/jstd-shim)
+
 JSTD shim
 ==========
 
